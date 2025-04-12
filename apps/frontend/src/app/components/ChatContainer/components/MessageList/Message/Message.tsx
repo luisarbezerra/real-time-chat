@@ -1,11 +1,8 @@
 import { formatTime } from './utils/formatTime';
+import { Message as MessageType } from '@real-time-chat/shared';
 
 interface MessageProps {
-  message: {
-    user: { id: string; name: string };
-    text: string;
-    timestamp: Date;
-  };
+  message: MessageType;
   isSentByCurrentUser: boolean;
 }
 

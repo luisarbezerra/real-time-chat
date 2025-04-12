@@ -4,17 +4,13 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Message } from './Message';
 import './MessageList.scss';
 import { TypingIndicator } from './TypingIndicator';
+import { Message as MessageType, User } from '@real-time-chat/shared';
 
 type MessageListProps = {
-  messages: {
-    id: string;
-    user: { id: string; name: string };
-    text: string;
-    timestamp: Date;
-  }[];
+  messages: MessageType[];
   currentUserId: string;
   isLoading: boolean;
-  typingUsers: { id: string; name: string }[];
+  typingUsers: User[];
 };
 
 export const MessageList = ({

@@ -1,7 +1,8 @@
 import './TypingIndicator.scss';
+import { User } from '@real-time-chat/shared';
 
 interface TypingIndicatorProps {
-  typingUsers: { id: string; name: string }[];
+  typingUsers: User[];
   currentUserId: string;
 }
 

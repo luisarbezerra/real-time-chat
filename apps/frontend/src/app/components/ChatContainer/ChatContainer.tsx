@@ -5,6 +5,7 @@ import { ChatHeader } from './components/ChatHeader';
 import { MessageList } from './components/MessageList';
 import { ChatInput } from './components/ChatInput';
 import './ChatContainer.scss';
+import { Message, User } from '@real-time-chat/shared';
 
 const socket = io('http://localhost:3333');
 
@@ -12,18 +13,9 @@ export const ChatContainer = () => {
   const [userId] = useState(() => uuidv4());
   const [username, setUsername] = useState('');
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<
-    {
-      id: string;
-      user: { id: string; name: string };
-      text: string;
-      timestamp: Date;
-    }[]
-  >([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [typingUsers, setTypingUsers] = useState<
-    { id: string; name: string }[]
-  >([]);
+  const [typingUsers, setTypingUsers] = useState<User[]>([]);
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(
     null
   );
