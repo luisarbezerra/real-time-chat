@@ -3,17 +3,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Message } from './Message';
 import './MessageList.scss';
+import { TypingIndicator } from './TypingIndicator';
 
 type MessageListProps = {
-  messages: { id: string; user: string; text: string; timestamp: Date }[];
-  currentUsername: string;
+  messages: {
+    id: string;
+    user: { id: string; name: string };
+    text: string;
+    timestamp: Date;
+  }[];
+  currentUserId: string;
   isLoading: boolean;
+  typingUsers: { id: string; name: string }[];
 };
 
 export const MessageList = ({
   messages,
-  currentUsername,
+  currentUserId,
   isLoading,
+  typingUsers,
 }: MessageListProps) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +31,7 @@ export const MessageList = ({
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, typingUsers]);
 
   if (isLoading) {
     return (
@@ -36,10 +44,18 @@ export const MessageList = ({
 
   return (
     <div className="message-list">
-      {messages.map((msg) => (
-        <Message key={msg.id} message={msg} currentUsername={currentUsername} />
+      {messages.map((message) => (
+        <Message
+          key={message.id}
+          message={message}
+          isSentByCurrentUser={message.user.id === currentUserId}
+        />
       ))}
 
+      <TypingIndicator
+        typingUsers={typingUsers}
+        currentUserId={currentUserId}
+      />
       <div ref={messagesEndRef} />
     </div>
   );
