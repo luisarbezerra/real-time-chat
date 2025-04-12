@@ -1,6 +1,7 @@
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
 const server = createServer(app);
@@ -8,7 +9,7 @@ const io = new Server(server, {
   cors: { origin: '*' },
 });
 
-const messages: { user: string; text: string }[] = [];
+const messages: { id: string; user: string; text: string }[] = [];
 
 io.on('connection', (socket) => {
   console.log('user connected');
@@ -17,7 +18,7 @@ io.on('connection', (socket) => {
 
   socket.on('new_message', (msg) => {
     console.log('new message', msg);
-    messages.push(msg);
+    messages.push({ id: uuidv4(), ...msg });
     io.emit('new_message', msg);
   });
 });

@@ -1,0 +1,40 @@
+.chat-header {
+  padding: 16px;
+  background-color: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary-light);
+  border-radius: 12px 12px 0 0;
+}
+
+.username-container {
+  display: flex;
+  gap: 12px;
+}
+
+.username-icon {
+  color: var(--color-text-white-80);
+  display: flex;
+  align-items: center;
+}
+
+.username-input {
+  width: 250px;
+
+  input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-primary-light);
+    border-radius: 12px;
+    color: var(--color-text-white);
+    border: none;
+    outline: none;
+
+    &:focus {
+      background-color: var(--color-primary-lighter);
+      box-shadow: 0 0 0 2px var(--color-accent-alpha);
+    }
+
+    &::placeholder {
+      color: var(--color-text-white-50);
+    }
+  }
+}
