@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const socket = io('http://localhost:3333');
 
@@ -29,17 +31,32 @@ export const ChatBox = () => {
 
   return (
     <div>
-      <input
-        placeholder="Name"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        placeholder="Message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button onClick={sendMessage}>Send</button>
+      <h1>Real Time Chat</h1>
+
+      <label>
+        <FontAwesomeIcon icon={faUser} aria-hidden="true" focusable="false" />
+        Username
+        <input
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          maxLength={30}
+          required
+        />
+      </label>
+
+      <label>
+        Message
+        <textarea
+          placeholder="Message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+      </label>
+
+      <button onClick={sendMessage} aria-label="Send message">
+        <FontAwesomeIcon icon={faPaperPlane} />
+      </button>
 
       <ul>
         {messages.map((msg, idx) => (
