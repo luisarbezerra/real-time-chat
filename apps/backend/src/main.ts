@@ -3,6 +3,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { v4 as uuidv4 } from 'uuid';
 import { Message, User } from '@real-time-chat/shared';
+import { sanitizeMessage, sanitizeUser } from './utils/sanitize';
 
 const app = express();
 const server = createServer(app);
@@ -19,19 +20,25 @@ io.on('connection', (socket) => {
   socket.emit('chat_history', messages);
 
   socket.on('new_message', (msg: Omit<Message, 'id' | 'timestamp'>) => {
-    console.log('new message', msg);
+    const sanitizedMessage = sanitizeMessage(msg);
+
     const newMessage: Message = {
       id: uuidv4(),
-      ...msg,
+      ...sanitizedMessage,
       timestamp: new Date(),
     };
+
     messages.push(newMessage);
+
     io.emit('new_message', newMessage);
   });
 
   socket.on('typing', (user: User) => {
     if (user?.id && user?.name) {
-      typingUsers.set(user.id, user);
+      const sanitizedUser = sanitizeUser(user);
+
+      typingUsers.set(sanitizedUser.id, sanitizedUser);
+
       socket.broadcast.emit('user_typing', Array.from(typingUsers.values()));
     }
   });
@@ -39,6 +46,7 @@ io.on('connection', (socket) => {
   socket.on('stop_typing', (user: User) => {
     if (user?.id) {
       typingUsers.delete(user.id);
+
       socket.broadcast.emit('user_typing', Array.from(typingUsers.values()));
     }
   });

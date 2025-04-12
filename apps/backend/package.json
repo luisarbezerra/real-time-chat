@@ -33,6 +33,7 @@
   "dependencies": {
     "@real-time-chat/shared": "file:../../shared",
     "socket.io": "^4.8.1",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "xss": "^1.0.15"
   }
 }

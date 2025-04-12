@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import DOMPurify from 'dompurify';
 import './ChatInput.scss';
 
 interface ChatInputProps {
@@ -22,13 +23,18 @@ export const ChatInput = ({
     }
   };
 
+  const handleMessageChange = (value: string) => {
+    const sanitizedValue = DOMPurify.sanitize(value);
+    onMessageChange(sanitizedValue);
+  };
+
   return (
     <div className="chat-input">
       <div className="message-input">
         <textarea
           placeholder="Type your message..."
           value={message}
-          onChange={(e) => onMessageChange(e.target.value)}
+          onChange={(e) => handleMessageChange(e.target.value)}
           rows={2}
           maxLength={300}
           onKeyDown={handleKeyDown}

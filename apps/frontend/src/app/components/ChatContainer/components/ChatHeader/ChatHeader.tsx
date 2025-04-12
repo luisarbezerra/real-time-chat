@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import DOMPurify from 'dompurify';
 import './ChatHeader.scss';
 
 interface ChatHeaderProps {
@@ -10,8 +11,13 @@ interface ChatHeaderProps {
 export const ChatHeader = ({ username, onUsernameChange }: ChatHeaderProps) => {
   const handleUsernameKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === 'Escape') {
-      onUsernameChange(username.trim());
+      onUsernameChange(DOMPurify.sanitize(username.trim()));
     }
+  };
+
+  const handleUsernameChange = (value: string) => {
+    const sanitizedValue = DOMPurify.sanitize(value);
+    onUsernameChange(sanitizedValue);
   };
 
   return (
@@ -25,7 +31,7 @@ export const ChatHeader = ({ username, onUsernameChange }: ChatHeaderProps) => {
           <input
             type="text"
             value={username}
-            onChange={(e) => onUsernameChange(e.target.value)}
+            onChange={(e) => handleUsernameChange(e.target.value)}
             onKeyDown={handleUsernameKeyPress}
             maxLength={30}
             placeholder="Enter your username"
