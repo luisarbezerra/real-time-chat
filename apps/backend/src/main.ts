@@ -1,21 +1,26 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import express from 'express';
-import * as path from 'path';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 const app = express();
-
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to backend!' });
+const server = createServer(app);
+const io = new Server(server, {
+  cors: { origin: '*' },
 });
 
-const port = process.env.PORT || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
+const messages: { user: string; text: string }[] = [];
+
+io.on('connection', (socket) => {
+  console.log('user connected');
+
+  socket.emit('chat_history', messages);
+
+  socket.on('new_message', (msg) => {
+    console.log('new message', msg);
+    messages.push(msg);
+    io.emit('new_message', msg);
+  });
 });
-server.on('error', console.error);
+
+const PORT = 3333;
+server.listen(PORT, () => console.log(`API listening on port ${PORT}`));
