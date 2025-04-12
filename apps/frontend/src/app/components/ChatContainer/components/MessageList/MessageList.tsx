@@ -8,14 +8,14 @@ import { Message as MessageType, User } from '@real-time-chat/shared';
 
 type MessageListProps = {
   messages: MessageType[];
-  currentUserId: string;
+  user: User;
   isLoading: boolean;
   typingUsers: User[];
 };
 
 export const MessageList = ({
   messages,
-  currentUserId,
+  user,
   isLoading,
   typingUsers,
 }: MessageListProps) => {
@@ -44,14 +44,11 @@ export const MessageList = ({
         <Message
           key={message.id}
           message={message}
-          isSentByCurrentUser={message.user.id === currentUserId}
+          isSentByCurrentUser={message.user.id === user.id}
         />
       ))}
 
-      <TypingIndicator
-        typingUsers={typingUsers}
-        currentUserId={currentUserId}
-      />
+      <TypingIndicator typingUsers={typingUsers} currentUserId={user.id} />
       <div ref={messagesEndRef} />
     </div>
   );
