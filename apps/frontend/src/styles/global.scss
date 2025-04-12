@@ -1,0 +1,16 @@
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: var(--color-gray-100);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 0;
+  font-size: 14px;
+
+  textarea,
+  input {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+      'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+}
