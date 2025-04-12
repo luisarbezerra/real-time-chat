@@ -5,13 +5,12 @@ interface MessageProps {
   message: MessageType;
   isSentByCurrentUser: boolean;
 }
-
 export const Message = ({ message, isSentByCurrentUser }: MessageProps) => {
   return (
     <div className={`message ${isSentByCurrentUser ? 'sent' : 'received'}`}>
       <div className="message-content">{message.text}</div>
       <div className="message-timestamp">
-        {message.user.name}, {formatTime(message.timestamp)}
+        {message.user.name}, {formatTime(new Date(message.timestamp))}
       </div>
     </div>
   );

@@ -21,24 +21,16 @@ export const ChatContainer = () => {
   );
 
   useEffect(() => {
-    socket.on('chat_history', (msgs) => {
-      const messagesWithTimestamp = msgs.map((msg: any) => ({
-        ...msg,
-        timestamp: new Date(),
-      }));
-      setMessages(messagesWithTimestamp);
+    socket.on('chat_history', (msgs: Message[]) => {
+      setMessages(msgs);
       setIsLoading(false);
     });
 
-    socket.on('new_message', (msg) => {
-      const msgWithTimestamp = {
-        ...msg,
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, msgWithTimestamp]);
+    socket.on('new_message', (msg: Message) => {
+      setMessages((prev) => [...prev, msg]);
     });
 
-    socket.on('user_typing', (users) => {
+    socket.on('user_typing', (users: User[]) => {
       setTypingUsers(users);
     });
 
@@ -55,6 +47,7 @@ export const ChatContainer = () => {
       if (typingTimeout) {
         clearTimeout(typingTimeout);
       }
+
       const timeout = setTimeout(() => {
         socket.emit('stop_typing', { id: userId, name: username });
       }, 1000);
@@ -68,6 +61,7 @@ export const ChatContainer = () => {
         user: { id: userId, name: username },
         text: message.trim(),
       });
+
       socket.emit('stop_typing', { id: userId, name: username });
       if (typingTimeout) {
         clearTimeout(typingTimeout);
