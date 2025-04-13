@@ -1,10 +1,10 @@
 import './TypingIndicator.scss';
 import { User } from '@real-time-chat/shared';
 
-interface TypingIndicatorProps {
+type TypingIndicatorProps = {
   typingUsers: User[];
   currentUserId: string;
-}
+};
 
 export const TypingIndicator = ({
   typingUsers,

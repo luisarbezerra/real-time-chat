@@ -8,6 +8,7 @@ const messageService = new MessageService();
 const userService = new UserService();
 const socketEvents = new SocketEvents(io, messageService, userService);
 
+// Connection event and setup socket events
 io.on('connection', (socket) => {
   socketEvents.setupSocketEvents(socket);
 });

@@ -13,8 +13,14 @@ export const ChatContainer = () => {
   });
   const [message, setMessage] = useState('');
 
-  const { messages, isLoading, typingUsers, handleTyping, sendMessage } =
-    useSocket(user);
+  const {
+    messages,
+    isLoading,
+    typingUsers,
+    handleTyping,
+    sendMessage,
+    isConnected,
+  } = useSocket(user);
 
   const handleSendMessage = () => {
     if (sendMessage(message)) {
@@ -31,6 +37,8 @@ export const ChatContainer = () => {
       <ChatHeader
         username={user.name}
         onUsernameChange={handleUsernameChange}
+        isConnected={isConnected}
+        isInputDisabled={isLoading}
       />
 
       <MessageList
@@ -47,7 +55,10 @@ export const ChatContainer = () => {
           handleTyping();
         }}
         onSendMessage={handleSendMessage}
-        isSendDisabled={!user.name || !message.trim()}
+        isSendDisabled={
+          !user.name || !message.trim() || !isConnected || isLoading
+        }
+        isInputDisabled={isLoading}
       />
     </div>
   );

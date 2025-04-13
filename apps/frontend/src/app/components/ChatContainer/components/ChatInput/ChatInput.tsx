@@ -3,18 +3,20 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import DOMPurify from 'dompurify';
 import './ChatInput.scss';
 
-interface ChatInputProps {
+type ChatInputProps = {
   message: string;
   onMessageChange: (message: string) => void;
   onSendMessage: () => void;
   isSendDisabled: boolean;
-}
+  isInputDisabled: boolean;
+};
 
 export const ChatInput = ({
   message,
   onMessageChange,
   onSendMessage,
   isSendDisabled,
+  isInputDisabled,
 }: ChatInputProps) => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -40,6 +42,7 @@ export const ChatInput = ({
           onKeyDown={handleKeyDown}
           aria-label="Message input"
           aria-multiline="true"
+          disabled={isInputDisabled}
         />
       </div>
       <button

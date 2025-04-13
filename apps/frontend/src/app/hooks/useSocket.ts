@@ -11,8 +11,12 @@ export const useSocket = (user: User) => {
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(
     null
   );
+  const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
+    socket.on('connect', () => setIsConnected(true));
+    socket.on('disconnect', () => setIsConnected(false));
+
     socket.on('chat_history', (msgs: Message[]) => {
       setMessages(msgs);
       setIsLoading(false);
@@ -27,6 +31,8 @@ export const useSocket = (user: User) => {
     });
 
     return () => {
+      socket.off('connect');
+      socket.off('disconnect');
       socket.off('chat_history');
       socket.off('new_message');
       socket.off('user_typing');
@@ -51,7 +57,7 @@ export const useSocket = (user: User) => {
 
   const sendMessage = useCallback(
     (message: string) => {
-      if (user.name && message.trim()) {
+      if (user.name && message.trim() && isConnected) {
         socket.emit('new_message', {
           user: user,
           text: message.trim(),
@@ -75,5 +81,6 @@ export const useSocket = (user: User) => {
     typingUsers,
     handleTyping,
     sendMessage,
+    isConnected,
   };
 };

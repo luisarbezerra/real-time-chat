@@ -2,13 +2,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import DOMPurify from 'dompurify';
 import './ChatHeader.scss';
+import { ConnectionIndicator } from './ConnectionIndicator';
 
-interface ChatHeaderProps {
+type ChatHeaderProps = {
   username: string;
   onUsernameChange: (username: string) => void;
-}
+  isConnected: boolean;
+  isInputDisabled: boolean;
+};
 
-export const ChatHeader = ({ username, onUsernameChange }: ChatHeaderProps) => {
+export const ChatHeader = ({
+  username,
+  onUsernameChange,
+  isConnected,
+  isInputDisabled,
+}: ChatHeaderProps) => {
   const handleUsernameKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === 'Escape') {
       onUsernameChange(DOMPurify.sanitize(username.trim()));
@@ -37,8 +45,11 @@ export const ChatHeader = ({ username, onUsernameChange }: ChatHeaderProps) => {
             placeholder="Enter your username"
             aria-label="Username input"
             aria-required="true"
+            disabled={isInputDisabled}
           />
         </div>
+
+        {!isInputDisabled && <ConnectionIndicator isConnected={isConnected} />}
       </div>
     </div>
   );

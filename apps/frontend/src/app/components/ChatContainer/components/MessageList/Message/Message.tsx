@@ -2,10 +2,11 @@ import { formatTime } from './utils/formatTime';
 import { Message as MessageType } from '@real-time-chat/shared';
 import DOMPurify from 'dompurify';
 
-interface MessageProps {
+type MessageProps = {
   message: MessageType;
   isSentByCurrentUser: boolean;
-}
+};
+
 export const Message = ({ message, isSentByCurrentUser }: MessageProps) => {
   const sanitizedText = DOMPurify.sanitize(message.text);
   const sanitizedUsername = DOMPurify.sanitize(message.user.name);

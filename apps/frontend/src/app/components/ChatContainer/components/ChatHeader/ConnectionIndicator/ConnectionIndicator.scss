@@ -1,0 +1,15 @@
+.connection-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-100);
+  gap: 8px;
+
+  .connected {
+    color: var(--color-success);
+  }
+
+  .disconnected {
+    color: var(--color-error);
+  }
+}

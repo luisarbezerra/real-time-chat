@@ -8,6 +8,7 @@
 .username-container {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .username-icon {
@@ -18,10 +19,10 @@
 }
 
 .username-input {
-  width: 250px;
+  flex: 1;
 
   input {
-    width: 100%;
+    width: 250px;
     padding: 12px;
     background-color: var(--color-primary-light);
     border-radius: 12px;
