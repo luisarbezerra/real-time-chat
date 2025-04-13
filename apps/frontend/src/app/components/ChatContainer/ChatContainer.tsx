@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { ChatHeader } from './components/ChatHeader';
 import { MessageList } from './components/MessageList';
 import { ChatInput } from './components/ChatInput';
@@ -9,7 +8,7 @@ import './ChatContainer.scss';
 
 export const ChatContainer = () => {
   const [user, setUser] = useState<User>({
-    id: uuidv4(),
+    id: crypto.randomUUID(),
     name: '',
   });
   const [message, setMessage] = useState('');

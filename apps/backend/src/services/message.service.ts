@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Message } from '@real-time-chat/shared';
 import { sanitizeMessage } from '../utils/sanitize';
 import { logger } from '../utils/logger';
@@ -11,7 +10,7 @@ export class MessageService {
 
     const sanitizedMessage = sanitizeMessage(message);
     const newMessage: Message = {
-      id: uuidv4(),
+      id: crypto.randomUUID(),
       ...sanitizedMessage,
       timestamp: new Date(),
     };
