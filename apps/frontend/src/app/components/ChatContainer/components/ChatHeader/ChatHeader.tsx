@@ -41,7 +41,7 @@ export const ChatHeader = ({
             value={username}
             onChange={(e) => handleUsernameChange(e.target.value)}
             onKeyDown={handleUsernameKeyPress}
-            maxLength={30}
+            maxLength={25}
             placeholder="Enter your username"
             aria-label="Username input"
             aria-required="true"
