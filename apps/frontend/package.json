@@ -13,7 +13,17 @@
     "@real-time-chat/shared": "file:../../shared",
     "@types/uuid": "^10.0.0",
     "dompurify": "^3.2.5",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "6.29.0",
     "socket.io-client": "^4.8.1",
     "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
+    "@svgr/webpack": "^8.0.1",
+    "react-refresh": "^0.10.0"
   }
 }
