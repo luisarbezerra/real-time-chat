@@ -24,7 +24,7 @@ export const ChatHeader = ({ username, onUsernameChange }: ChatHeaderProps) => {
     <div className="chat-header">
       <div className="username-container">
         <div className="username-icon">
-          <FontAwesomeIcon icon={faUser} />
+          <FontAwesomeIcon icon={faUser} aria-hidden="true" />
         </div>
 
         <div className="username-input">
@@ -35,6 +35,8 @@ export const ChatHeader = ({ username, onUsernameChange }: ChatHeaderProps) => {
             onKeyDown={handleUsernameKeyPress}
             maxLength={30}
             placeholder="Enter your username"
+            aria-label="Username input"
+            aria-required="true"
           />
         </div>
       </div>

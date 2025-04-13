@@ -32,7 +32,7 @@ export const MessageList = ({
   if (isLoading) {
     return (
       <div className="loading-container">
-        <FontAwesomeIcon icon={faSpinner} spin />
+        <FontAwesomeIcon icon={faSpinner} spin aria-hidden="true" />
         <span>Loading messages...</span>
       </div>
     );
@@ -49,7 +49,7 @@ export const MessageList = ({
       ))}
 
       <TypingIndicator typingUsers={typingUsers} currentUserId={user.id} />
-      <div ref={messagesEndRef} />
+      <div ref={messagesEndRef} aria-hidden="true" />
     </div>
   );
 };

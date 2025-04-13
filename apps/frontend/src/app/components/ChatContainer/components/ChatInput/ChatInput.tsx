@@ -38,14 +38,18 @@ export const ChatInput = ({
           rows={2}
           maxLength={300}
           onKeyDown={handleKeyDown}
+          aria-label="Message input"
+          aria-multiline="true"
         />
       </div>
       <button
         onClick={onSendMessage}
         disabled={isSendDisabled}
         aria-label="Send message"
+        aria-disabled={isSendDisabled}
+        tabIndex={0}
       >
-        <FontAwesomeIcon icon={faPaperPlane} />
+        <FontAwesomeIcon icon={faPaperPlane} aria-hidden="true" />
       </button>
     </div>
   );
