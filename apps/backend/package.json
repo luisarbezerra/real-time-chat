@@ -31,7 +31,6 @@
     }
   },
   "dependencies": {
-    "@real-time-chat/shared": "workspace:*",
     "axios": "^1.6.0",
     "express": "^4.21.2",
     "socket.io": "^4.8.1",

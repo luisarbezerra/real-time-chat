@@ -10,7 +10,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@real-time-chat/shared": "workspace:*",
     "dompurify": "^3.2.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",
@@ -18,10 +17,11 @@
     "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
-    "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0",
+    "@nx/react": "20.7.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@svgr/webpack": "^8.0.1",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
     "react-refresh": "^0.10.0"
   }
 }
