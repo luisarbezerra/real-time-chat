@@ -3,14 +3,11 @@ import { ChatHeader } from './components/ChatHeader';
 import { MessageList } from './components/MessageList';
 import { ChatInput } from './components/ChatInput';
 import { useSocket } from '../../hooks/useSocket';
-import { User } from '@real-time-chat/shared';
+import { useUser } from '../../hooks/useUser';
 import './ChatContainer.scss';
 
 export const ChatContainer = () => {
-  const [user, setUser] = useState<User>({
-    id: crypto.randomUUID(),
-    name: '',
-  });
+  const { user, updateUsername } = useUser();
   const [message, setMessage] = useState('');
 
   const {
@@ -28,15 +25,11 @@ export const ChatContainer = () => {
     }
   };
 
-  const handleUsernameChange = (name: string) => {
-    setUser((prev) => ({ ...prev, name }));
-  };
-
   return (
     <div className="chat-container">
       <ChatHeader
         username={user.name}
-        onUsernameChange={handleUsernameChange}
+        onUsernameChange={updateUsername}
         isConnected={isConnected}
         isInputDisabled={isLoading}
       />
