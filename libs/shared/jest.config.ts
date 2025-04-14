@@ -17,5 +17,23 @@ export default {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: 'test-output/jest/coverage',
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  coverageThreshold: {
+    global: {
+      branches: 100,
+      functions: 100,
+      // TypeScript type definitions are removed during compilation and don't generate
+      // executable code, so we can't track line and statement coverage for them.
+      // We still enforce 100% coverage for branches and functions to ensure all
+      // executable code paths are tested.
+      lines: 0,
+      statements: 0,
+    },
+  },
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.spec.ts',
+    '!src/**/*.test.ts',
+    '!src/**/*.d.ts',
+  ],
 };

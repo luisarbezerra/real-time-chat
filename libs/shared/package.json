@@ -18,6 +18,8 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
+    "@jest/globals": "^29.7.0",
     "tslib": "^2.3.0"
-  }
+  },
+  "devDependencies": {}
 }
