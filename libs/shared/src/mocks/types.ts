@@ -1,12 +1,12 @@
-import { User, Message } from '../types/index.js';
+import { User, Message } from '../types';
 
 export const mockUser: User = {
-  id: '1',
+  id: 'test-user-id',
   name: 'Test User',
 };
 
 export const mockMessage: Message = {
-  id: '1',
+  id: 'test-message-id',
   user: mockUser,
   text: 'Test message',
   timestamp: new Date(),
