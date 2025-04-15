@@ -1,7 +1,5 @@
 import { mockUser } from '@real-time-chat/shared';
-import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/jest-globals';
-import { expect, jest, test } from '@jest/globals';
 
 // Mock localStorage
 const localStorageMock = (function () {

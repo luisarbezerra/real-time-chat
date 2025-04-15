@@ -13,4 +13,6 @@ io.on('connection', (socket) => {
   socketEvents.setupSocketEvents(socket);
 });
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () =>
+  console.log(`Server running on port http://localhost:${PORT}`)
+);

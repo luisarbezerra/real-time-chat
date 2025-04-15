@@ -1,22 +1,42 @@
-/* eslint-disable */
-import { readFileSync } from 'fs';
+// Using a simpler approach that doesn't rely on Node.js specific modules
+// that might be problematic with the current TypeScript configuration
 
-// Reading the SWC compilation config for the spec files
-const swcJestConfig = JSON.parse(
-  readFileSync(`${__dirname}/.spec.swcrc`, 'utf-8')
-);
-
-// Disable .swcrc look-up by SWC core because we're passing in swcJestConfig ourselves
-swcJestConfig.swcrc = false;
+// Inline configuration matching the .spec.swcrc file
+const swcJestConfig = {
+  jsc: {
+    target: 'es2017',
+    parser: {
+      syntax: 'typescript',
+      decorators: true,
+      dynamicImport: true,
+    },
+    transform: {
+      decoratorMetadata: true,
+      legacyDecorator: true,
+    },
+    keepClassNames: true,
+    externalHelpers: true,
+    loose: true,
+  },
+  module: {
+    type: 'es6',
+  },
+  sourceMaps: true,
+  exclude: [],
+  swcrc: false,
+};
 
 export default {
   displayName: '@real-time-chat/shared',
   preset: '../../jest.preset.js',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: ['node', 'node-addons'],
+  },
   transform: {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
   },
-  moduleFileExtensions: ['ts', 'js', 'html'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageThreshold: {
     global: {
