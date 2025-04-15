@@ -26,7 +26,7 @@ export const ChatContainer = () => {
   };
 
   return (
-    <div className="chat-container">
+    <div className="chat-container" data-testid="chat-container">
       <ChatHeader
         username={user.name}
         onUsernameChange={updateUsername}

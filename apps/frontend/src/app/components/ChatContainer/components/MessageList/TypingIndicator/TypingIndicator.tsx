@@ -27,7 +27,7 @@ export const TypingIndicator = ({
   };
 
   return (
-    <div className="typing-indicator">
+    <div className="typing-indicator" data-testid="typing-indicator">
       <em>{getTypingText()}</em>
     </div>
   );

@@ -15,7 +15,7 @@ export const useUser = () => {
     if (user.name) {
       localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
     }
-  }, [user]);
+  }, [JSON.stringify(user)]);
 
   const updateUsername = (name: string) => {
     setUser((prev) => ({ ...prev, name }));

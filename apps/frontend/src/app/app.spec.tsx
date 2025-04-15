@@ -13,14 +13,12 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have a greeting as the title', () => {
-    const { getAllByText } = render(
+  it('should render chat container', () => {
+    const { getByTestId } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
     );
-    expect(
-      getAllByText(new RegExp('Welcome frontend', 'gi')).length > 0
-    ).toBeTruthy();
+    expect(getByTestId('chat-container')).toBeInTheDocument();
   });
 });

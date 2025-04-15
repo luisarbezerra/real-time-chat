@@ -10,7 +10,7 @@ export const ConnectionIndicator = ({
   isConnected,
 }: ConnectionIndicatorProps) => {
   return (
-    <div className="connection-indicator">
+    <div className="connection-indicator" data-testid="connection-indicator">
       {isConnected ? 'Connected' : 'Disconnected'}
 
       <FontAwesomeIcon

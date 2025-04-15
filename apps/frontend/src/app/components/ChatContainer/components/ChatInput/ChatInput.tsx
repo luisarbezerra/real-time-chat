@@ -31,7 +31,7 @@ export const ChatInput = ({
   };
 
   return (
-    <div className="chat-input">
+    <div className="chat-input" data-testid="chat-input">
       <div className="message-input">
         <textarea
           placeholder="Type your message..."
@@ -43,6 +43,7 @@ export const ChatInput = ({
           aria-label="Message input"
           aria-multiline="true"
           disabled={isInputDisabled}
+          data-testid="message-textarea"
         />
       </div>
       <button
@@ -51,6 +52,7 @@ export const ChatInput = ({
         aria-label="Send message"
         aria-disabled={isSendDisabled}
         tabIndex={0}
+        data-testid="send-button"
       >
         <FontAwesomeIcon icon={faPaperPlane} aria-hidden="true" />
       </button>

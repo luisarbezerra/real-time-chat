@@ -29,7 +29,7 @@ export const ChatHeader = ({
   };
 
   return (
-    <div className="chat-header">
+    <div className="chat-header" data-testid="chat-header">
       <div className="username-container">
         <div className="username-icon">
           <FontAwesomeIcon icon={faUser} aria-hidden="true" />
@@ -46,6 +46,7 @@ export const ChatHeader = ({
             aria-label="Username input"
             aria-required="true"
             disabled={isInputDisabled}
+            data-testid="username-input"
           />
         </div>
 

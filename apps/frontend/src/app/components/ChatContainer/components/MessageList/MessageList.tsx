@@ -56,7 +56,7 @@ export const MessageList = ({
   }
 
   return (
-    <div className="message-list">
+    <div className="message-list" data-testid="message-list">
       {messages.map((message) => (
         <Message
           key={message.id}
