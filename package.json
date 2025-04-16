@@ -2,7 +2,9 @@
   "name": "@real-time-chat/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "pnpm nx build shared && pnpm -F @real-time-chat/shared run build"
+  },
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.14.5",

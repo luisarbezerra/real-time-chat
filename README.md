@@ -36,14 +36,11 @@ git clone https://github.com/luisarbezerra/real-time-chat.git
 cd real-time-chat
 ```
 
-2. **Install dependencies**:
-
-### Using pnpm (recommended):
+2. **Install dependencies and preparing environment**:
 
 ```bash
 pnpm install
-pnpm nx build shared
-cd libs/shared && pnpm build
+pnpm run prepare
 ```
 
 ## Run tasks
