@@ -16,7 +16,7 @@
 |                    | Separate WebSocket/server logic into reusable hooks/modules                | ✅ Completed          | Clean architecture and testability                                      |
 |                    | Add database integration for message history                               | 🕒 Optional/Backlog   | Would improve message persistence; not included due to time constraints |
 | **Testing**        | Setup code coverage to 80%                                                 | ✅ Completed          | Ensures high-quality and reliable code                                  |
-|                    | Write unit and integration tests using custom mocks                        | ✅ Completed          | Reusable test mocks from shared directory                               |
+|                    | Write playwright, unit and integration tests using custom mocks            | ✅ Completed          | Reusable test mocks from shared directory                               |
 | **Error Handling** | Implement validation for inputs (max length, required fields)              | ✅ Completed          | Prevents unexpected behavior and poor UX                                |
 | **Documentation**  | Add detailed README with run instructions                                  | ✅ Completed          | Ensures easy onboarding for users                                       |
 |                    | Add README section with architectural overview and setup commands          | ✅ Completed          | Clearly explains key design decisions and usage                         |
