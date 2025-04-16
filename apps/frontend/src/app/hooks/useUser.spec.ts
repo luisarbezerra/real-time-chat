@@ -1,6 +1,7 @@
-import { renderHook, act } from '@testing-library/react';
-import { useUser } from './useUser';
 import { mockUser } from '@real-time-chat/shared';
+import { renderHook, act } from '@testing-library/react';
+
+import { useUser } from './useUser';
 
 describe('useUser', () => {
   beforeEach(() => {

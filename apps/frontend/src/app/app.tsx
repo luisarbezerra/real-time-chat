@@ -1,6 +1,8 @@
+import { FC } from 'react';
+
 import { ChatContainer } from './components/ChatContainer/ChatContainer';
 
-const App = () => {
+const App: FC = () => {
   return <ChatContainer />;
 };
 

@@ -1,9 +1,11 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { ChatContainer } from './ChatContainer';
-import { useUser } from '../../hooks/useUser';
-import { useSocket } from '../../hooks/useSocket';
 import { mockUser, mockMessage } from '@real-time-chat/shared';
+import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+
+import { useSocket } from '../../hooks/useSocket';
+import { useUser } from '../../hooks/useUser';
+
+import { ChatContainer } from './ChatContainer';
 
 jest.mock('../../hooks/useUser');
 jest.mock('../../hooks/useSocket');

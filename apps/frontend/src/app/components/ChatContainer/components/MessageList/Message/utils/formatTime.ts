@@ -1,4 +1,4 @@
-export const formatTime = (date: Date) => {
+export const formatTime = (date: Date): string => {
   return new Intl.DateTimeFormat(navigator.language, {
     hour: 'numeric',
     minute: 'numeric',

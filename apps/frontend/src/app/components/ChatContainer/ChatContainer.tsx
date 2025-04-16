@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import { ChatHeader } from './components/ChatHeader';
-import { MessageList } from './components/MessageList';
-import { ChatInput } from './components/ChatInput';
+import React from 'react';
+
 import { useSocket } from '../../hooks/useSocket';
 import { useUser } from '../../hooks/useUser';
+
+import { ChatHeader } from './components/ChatHeader';
+import { ChatInput } from './components/ChatInput';
+import { MessageList } from './components/MessageList';
 import './ChatContainer.scss';
 
-export const ChatContainer = () => {
+export const ChatContainer = (): React.ReactElement => {
   const { user, updateUsername } = useUser();
   const [message, setMessage] = useState('');
 
@@ -19,7 +22,7 @@ export const ChatContainer = () => {
     isConnected,
   } = useSocket(user);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (): void => {
     if (sendMessage(message)) {
       setMessage('');
     }

@@ -1,5 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import './ConnectionIndicator.scss';
 
 type ConnectionIndicatorProps = {
@@ -8,7 +9,7 @@ type ConnectionIndicatorProps = {
 
 export const ConnectionIndicator = ({
   isConnected,
-}: ConnectionIndicatorProps) => {
+}: ConnectionIndicatorProps): React.ReactElement => {
   return (
     <div className="connection-indicator" data-testid="connection-indicator">
       {isConnected ? 'Connected' : 'Disconnected'}

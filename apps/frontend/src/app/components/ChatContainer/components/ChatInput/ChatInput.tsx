@@ -1,6 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DOMPurify from 'dompurify';
+import React from 'react';
 import './ChatInput.scss';
 
 type ChatInputProps = {
@@ -17,15 +18,15 @@ export const ChatInput = ({
   onSendMessage,
   isSendDisabled,
   isInputDisabled,
-}: ChatInputProps) => {
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+}: ChatInputProps): React.ReactElement => {
+  const handleKeyDown = (e: React.KeyboardEvent): void => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       onSendMessage();
     }
   };
 
-  const handleMessageChange = (value: string) => {
+  const handleMessageChange = (value: string): void => {
     const sanitizedValue = DOMPurify.sanitize(value);
     onMessageChange(sanitizedValue);
   };

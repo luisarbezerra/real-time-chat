@@ -23,6 +23,8 @@ export default [
           varsIgnorePattern: '^_',
         },
       ],
+      '@typescript-eslint/no-empty-function': 'off',
+      'no-empty-function': 'off',
 
       // Formatting
       'import/order': [

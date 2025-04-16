@@ -1,10 +1,23 @@
+import { Message, User } from '@real-time-chat/shared';
 import { useEffect, useState, useCallback } from 'react';
 import io from 'socket.io-client';
-import { Message, User } from '@real-time-chat/shared';
 
 const socket = io('http://localhost:3333');
 
-export const useSocket = (user: User) => {
+type UseSocketProps = {
+  user: User;
+};
+
+type UseSocketReturn = {
+  messages: Message[];
+  isLoading: boolean;
+  typingUsers: User[];
+  handleTyping: () => void;
+  sendMessage: (message: string) => boolean;
+  isConnected: boolean;
+};
+
+export const useSocket = ({ user }: UseSocketProps): UseSocketReturn => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [typingUsers, setTypingUsers] = useState<User[]>([]);

@@ -1,9 +1,10 @@
-import React from 'react';
+import { mockMessage } from '@real-time-chat/shared';
 import { render, screen } from '@testing-library/react';
+import DOMPurify from 'dompurify';
+import React from 'react';
+
 import '@testing-library/jest-dom';
 import { Message } from './Message';
-import { mockMessage } from '@real-time-chat/shared';
-import DOMPurify from 'dompurify';
 
 // Mock DOMPurify
 jest.mock('dompurify', () => ({

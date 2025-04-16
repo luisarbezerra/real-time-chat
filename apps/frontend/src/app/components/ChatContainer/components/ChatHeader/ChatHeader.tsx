@@ -1,6 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DOMPurify from 'dompurify';
+import React from 'react';
+
 import './ChatHeader.scss';
 import { ConnectionIndicator } from './ConnectionIndicator';
 
@@ -16,14 +18,14 @@ export const ChatHeader = ({
   onUsernameChange,
   isConnected,
   isInputDisabled,
-}: ChatHeaderProps) => {
-  const handleUsernameKeyPress = (e: React.KeyboardEvent) => {
+}: ChatHeaderProps): React.ReactElement => {
+  const handleUsernameKeyPress = (e: React.KeyboardEvent): void => {
     if (e.key === 'Enter' || e.key === 'Escape') {
       onUsernameChange(DOMPurify.sanitize(username.trim()));
     }
   };
 
-  const handleUsernameChange = (value: string) => {
+  const handleUsernameChange = (value: string): void => {
     const sanitizedValue = DOMPurify.sanitize(value);
     onUsernameChange(sanitizedValue);
   };

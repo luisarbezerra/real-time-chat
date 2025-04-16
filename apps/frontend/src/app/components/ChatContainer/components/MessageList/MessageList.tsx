@@ -1,10 +1,11 @@
-import { useRef, useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { Message } from './Message';
-import './MessageList.scss';
-import { TypingIndicator } from './TypingIndicator';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Message as MessageType, User } from '@real-time-chat/shared';
+import { useRef, useEffect, useState } from 'react';
+
+import { Message } from './Message';
+import { TypingIndicator } from './TypingIndicator';
+import './MessageList.scss';
 
 type MessageListProps = {
   messages: MessageType[];
@@ -18,11 +19,11 @@ export const MessageList = ({
   user,
   isLoading,
   typingUsers,
-}: MessageListProps) => {
+}: MessageListProps): React.ReactElement => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [showLoading, setShowLoading] = useState(false);
 
-  const scrollToBottom = () => {
+  const scrollToBottom = (): void => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 

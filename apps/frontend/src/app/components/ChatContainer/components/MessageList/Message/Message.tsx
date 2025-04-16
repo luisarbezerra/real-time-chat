@@ -1,13 +1,18 @@
-import { formatTime } from './utils/formatTime';
 import { Message as MessageType } from '@real-time-chat/shared';
 import DOMPurify from 'dompurify';
+import React from 'react';
+
+import { formatTime } from './utils/formatTime';
 
 type MessageProps = {
   message: MessageType;
   isSentByCurrentUser: boolean;
 };
 
-export const Message = ({ message, isSentByCurrentUser }: MessageProps) => {
+export const Message = ({
+  message,
+  isSentByCurrentUser,
+}: MessageProps): React.ReactElement => {
   const sanitizedText = DOMPurify.sanitize(message.text);
   const sanitizedUsername = DOMPurify.sanitize(message.user.name);
 
