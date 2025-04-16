@@ -29,7 +29,7 @@ export const ChatHeader = ({
   }, [username]);
 
   useEffect(() => {
-    // Forçar o foco no input ao montar o componente
+    // Focus on the input when the component mounts
     if (inputRef.current && !isInputDisabled) {
       inputRef.current.focus();
     }

@@ -1,5 +1,6 @@
 import { mockUser, mockMessage } from '@real-time-chat/shared';
 import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import React from 'react';
 
 import { useSocket } from '../../hooks/useSocket';
