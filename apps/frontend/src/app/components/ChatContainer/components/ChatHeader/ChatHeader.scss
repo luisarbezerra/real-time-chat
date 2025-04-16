@@ -21,6 +21,8 @@
 
 .username-input {
   flex: 1;
+  position: relative;
+  display: flex;
 
   input {
     padding: 12px;
@@ -38,5 +40,17 @@
     &::placeholder {
       color: var(--color-text-white-50);
     }
+  }
+
+  .character-limit-warning {
+    position: relative;
+    font-size: 9px;
+    color: var(--color-error);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2px;
+    border-radius: 4px;
+    height: fit-content;
+    align-self: flex-end;
+    left: -20px;
   }
 }
