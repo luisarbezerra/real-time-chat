@@ -10,7 +10,7 @@
 |                    | Implement connection status indicator                                      | ✅ Completed          | Shows WebSocket connection state in real-time                           |
 |                    | Run accessibility (a11y) checks                                            | ✅ Completed          | Ensures inclusive design                                                |
 |                    | Perform performance check                                                  | ✅ Completed          | Verified app responsiveness under usage                                 |
-| **State & Data**   | Use `localStorage` to persist username only                                | ✅ Completed          | Prevents outdated messages from being shown after reload                |
+| **State & Data**   | Use `localStorage` to persist user only                                    | ✅ Completed          | Prevents outdated messages from being shown after reload                |
 |                    | Use shared types and mocks between frontend and backend                    | ✅ Completed          | Type safety and consistency throughout the stack                        |
 |                    | Sanitize inputs                                                            | ✅ Completed          | Prevents XSS and bad user input                                         |
 |                    | Separate WebSocket/server logic into reusable hooks/modules                | ✅ Completed          | Clean architecture and testability                                      |
