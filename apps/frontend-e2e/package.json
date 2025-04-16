@@ -13,9 +13,7 @@
     "test:ui": "playwright test --ui"
   },
   "devDependencies": {
+    "@playwright/test": "^1.36.0",
     "@types/node": "^22.14.1"
-  },
-  "dependencies": {
-    "@playwright/test": "^1.36.0"
   }
 }

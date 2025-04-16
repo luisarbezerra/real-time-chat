@@ -3,7 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "outDir": "out-tsc/playwright",
-    "types": ["@testing-library/jest-dom"],
+    "types": ["node", "@playwright/test"],
     "sourceMap": false
   },
   "include": [
