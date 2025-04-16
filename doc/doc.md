@@ -33,11 +33,11 @@ The architecture follows an event-driven design pattern, where real-time events 
 3. **Shared Library**: Common types shared between frontend and backend
 
    - Types and mocks for `Message`, `User` and `SocketEvents` (can be extended)
-   - Promotes type safety across the entire application and escalability of the app
+   - Promotes type safety across the entire application and scalability of the app
 
 4. **In-memory Storage**: Message history stored in memory on the backend
    - Simple Array-based storage for this prototype
-   - Efficient for small to medium scale applications
+   - Efficient for small to medium-scale applications
    - No persistence between server restarts (noted as a future enhancement)
 
 ## Technical Decisions
@@ -87,7 +87,7 @@ Socket.IO enables real-time communication in the app by providing a WebSocket co
 
 - **XSS Prevention**: All user inputs are sanitized using the `xss` library
   - Strips potentially dangerous HTML and JavaScript
-  - Applied to usernames and message content in the frontend, and in the server-side to ensure enforcement
+  - Applied to usernames and message content in the frontend, and on the server-side to ensure enforcement
 - **UUID for IDs**: Using `crypto.randomUUID()` for generating cryptographically secure random IDs
   - Prevents ID collisions and sequential ID attacks
 - **Input Validation**: Client and server-side validation of message content
@@ -105,10 +105,10 @@ We implemented a multi-level testing approach:
   - Jest for JavaScript/TypeScript testing
   - React Testing Library for component testing
   - Isolated tests for functions and utilities
-- **Integration Tests**: Testing interaction between components, nsuring components work together correctly
+- **Integration Tests**: Testing interaction between components, ensuring components work together correctly
 - **E2E Tests**: Playwright tests to simulate real user interactions, testing real user flows from end to end
 
-It was prioritized testing critical paths and core functionality, as the time was not enough to cover all usecases.
+It was prioritized testing critical paths and core functionality, as the time was not enough to cover all use cases.
 
 ## Frontend Implementation Details
 
@@ -182,8 +182,6 @@ While in-memory storage wouldn't be suitable for a production chat application, 
   - Error states clearly indicated
   - Connection status visually distinct
   - Typing indicators visually apparent
-
-![Performance Tab](performance.png)
 
 ## Potential Improvements
 
