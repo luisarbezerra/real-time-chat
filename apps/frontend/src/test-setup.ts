@@ -33,3 +33,15 @@ Object.defineProperty(window, 'crypto', {
 
 // Mock scrollIntoView
 Element.prototype.scrollIntoView = jest.fn();
+
+// Mock Intl.DateTimeFormat
+const mockFormat = jest.fn().mockReturnValue('10:30 AM');
+const mockDateTimeFormat = jest.fn().mockImplementation(() => ({
+  format: mockFormat,
+}));
+
+Object.defineProperty(global, 'Intl', {
+  value: {
+    DateTimeFormat: mockDateTimeFormat,
+  },
+});
