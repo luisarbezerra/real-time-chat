@@ -1,4 +1,8 @@
-import { Message, User } from '@real-time-chat/shared';
+import { 
+  Message, 
+  User, 
+  SocketEvents, 
+} from '@real-time-chat/shared';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import io, { Socket } from 'socket.io-client';
 
@@ -15,6 +19,13 @@ type UseSocketReturn = {
   isConnected: boolean;
 };
 
+const SOCKET_CONFIG = {
+  SERVER_URL: 'http://localhost:3333',
+  RECONNECTION_ATTEMPTS: 5,
+  TIMEOUT: 10000,
+  TYPING_DEBOUNCE_MS: 3000,
+};
+
 export const useSocket = ({ user }: UseSocketProps): UseSocketReturn => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,36 +39,36 @@ export const useSocket = ({ user }: UseSocketProps): UseSocketReturn => {
   useEffect(() => {
     // Initialize socket connection only once, avoid error when multiple instances are created
     if (!socketRef.current) {
-      socketRef.current = io('http://localhost:3333', {
-        reconnectionAttempts: 5,
-        timeout: 10000,
+      socketRef.current = io(SOCKET_CONFIG.SERVER_URL, {
+        reconnectionAttempts: SOCKET_CONFIG.RECONNECTION_ATTEMPTS,
+        timeout: SOCKET_CONFIG.TIMEOUT,
       });
     }
 
     const socket = socketRef.current;
 
-    socket.on('connect', () => setIsConnected(true));
-    socket.on('disconnect', () => setIsConnected(false));
+    socket.on(SocketEvents.CONNECT, () => setIsConnected(true));
+    socket.on(SocketEvents.DISCONNECT, () => setIsConnected(false));
 
-    socket.on('chat_history', (msgs: Message[]) => {
+    socket.on(SocketEvents.CHAT_HISTORY, (msgs: Message[]) => {
       setMessages(msgs);
       setIsLoading(false);
     });
 
-    socket.on('new_message', (msg: Message) => {
+    socket.on(SocketEvents.NEW_MESSAGE, (msg: Message) => {
       setMessages((prev) => [...prev, msg]);
     });
 
-    socket.on('user_typing', (users: User[]) => {
+    socket.on(SocketEvents.USER_TYPING, (users: User[]) => {
       setTypingUsers(users);
     });
 
     return () => {
-      socket.off('connect');
-      socket.off('disconnect');
-      socket.off('chat_history');
-      socket.off('new_message');
-      socket.off('user_typing');
+      socket.off(SocketEvents.CONNECT);
+      socket.off(SocketEvents.DISCONNECT);
+      socket.off(SocketEvents.CHAT_HISTORY);
+      socket.off(SocketEvents.NEW_MESSAGE);
+      socket.off(SocketEvents.USER_TYPING);
       // Don't disconnect socket on component unmount, just remove listeners
       // socket.disconnect();
     };
@@ -65,14 +76,15 @@ export const useSocket = ({ user }: UseSocketProps): UseSocketReturn => {
 
   const handleTyping = useCallback(() => {
     if (user.name && socketRef.current) {
-      socketRef.current.emit('typing', user);
+      socketRef.current.emit(SocketEvents.TYPING, user);
       if (typingTimeout) {
         clearTimeout(typingTimeout);
       }
 
+      //debounced typing events to prevent event flooding
       const timeout = setTimeout(() => {
-        socketRef.current?.emit('stop_typing', user);
-      }, 1000);
+        socketRef.current?.emit(SocketEvents.STOP_TYPING, user);
+      }, SOCKET_CONFIG.TYPING_DEBOUNCE_MS);
 
       setTypingTimeout(timeout);
     }
@@ -82,12 +94,12 @@ export const useSocket = ({ user }: UseSocketProps): UseSocketReturn => {
   const sendMessage = useCallback(
     (message: string) => {
       if (user.name && message.trim() && isConnected && socketRef.current) {
-        socketRef.current.emit('new_message', {
+        socketRef.current.emit(SocketEvents.NEW_MESSAGE, {
           user: user,
           text: message.trim(),
         });
 
-        socketRef.current.emit('stop_typing', user);
+        socketRef.current.emit(SocketEvents.STOP_TYPING, user);
         if (typingTimeout) {
           clearTimeout(typingTimeout);
         }

@@ -32,7 +32,7 @@ The architecture follows an event-driven design pattern, where real-time events 
 
 3. **Shared Library**: Common types shared between frontend and backend
 
-   - Types and mocks for `Message` and `User` (can be extended)
+   - Types and mocks for `Message`, `User` and `SocketEvents` (can be extended)
    - Promotes type safety across the entire application and escalability of the app
 
 4. **In-memory Storage**: Message history stored in memory on the backend

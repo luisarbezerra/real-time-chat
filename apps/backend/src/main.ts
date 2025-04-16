@@ -1,15 +1,16 @@
 import { createExpressApp, PORT } from './config/server.config';
 import { MessageService } from './services/message.service';
 import { UserService } from './services/user.service';
-import { SocketEvents } from './socket/socket.events';
+import { SocketEventsHandler } from './socket/socket.events';
+import { SocketEvents } from '@real-time-chat/shared';
 
 const { server, io } = createExpressApp();
 const messageService = new MessageService();
 const userService = new UserService();
-const socketEvents = new SocketEvents(io, messageService, userService);
+const socketEvents = new SocketEventsHandler(io, messageService, userService);
 
 // Connection event and setup socket events
-io.on('connection', (socket) => {
+io.on(SocketEvents.CONNECTION, (socket) => {
   socketEvents.setupSocketEvents(socket);
 });
 

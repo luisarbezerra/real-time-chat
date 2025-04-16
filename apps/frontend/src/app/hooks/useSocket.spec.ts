@@ -1,4 +1,4 @@
-import { mockUser, mockMessage, User, Message } from '@real-time-chat/shared';
+import { mockUser, mockMessage, User, Message, SocketEvents } from '@real-time-chat/shared';
 import { renderHook, waitFor } from '@testing-library/react';
 import io from 'socket.io-client';
 
@@ -52,7 +52,7 @@ describe('useSocket', () => {
 
     const chatHistoryCallback = mockSocket.on.mock.calls.find(
       (call: [string, (...args: Message[]) => void]) =>
-        call[0] === 'chat_history'
+        call[0] === SocketEvents.CHAT_HISTORY
     )?.[1];
 
     await waitFor(() => chatHistoryCallback?.([mockMessage]));
@@ -64,7 +64,8 @@ describe('useSocket', () => {
     const { result } = renderHook(() => useSocket({ user: mockUser }));
 
     const newMessageCallback = mockSocket.on.mock.calls.find(
-      (call: [string, (message: Message) => void]) => call[0] === 'new_message'
+      (call: [string, (message: Message) => void]) =>
+        call[0] === SocketEvents.NEW_MESSAGE
     )?.[1];
 
     await waitFor(() => newMessageCallback?.(mockMessage));
@@ -77,7 +78,8 @@ describe('useSocket', () => {
 
     // Simulate typing event
     const typingUsersCallback = mockSocket.on.mock.calls.find(
-      (call: [string, (users: User[]) => void]) => call[0] === 'user_typing'
+      (call: [string, (users: User[]) => void]) =>
+        call[0] === SocketEvents.USER_TYPING
     )?.[1];
 
     await waitFor(() => typingUsersCallback?.([mockUser]));

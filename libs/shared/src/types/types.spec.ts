@@ -1,4 +1,4 @@
-import { User, Message } from './index.js';
+import { User, Message, SocketEvents } from './index.js';
 
 describe('shared', () => {
   it('should create a user', () => {
@@ -25,5 +25,16 @@ describe('shared', () => {
       user: { id: '1', name: 'John Doe' },
       timestamp: new Date(),
     });
+  });
+
+  it('should have correct socket event values', () => {
+    expect(SocketEvents.CONNECT).toBe('connect');
+    expect(SocketEvents.DISCONNECT).toBe('disconnect');
+    expect(SocketEvents.ERROR).toBe('error');
+    expect(SocketEvents.NEW_MESSAGE).toBe('new_message');
+    expect(SocketEvents.CHAT_HISTORY).toBe('chat_history');
+    expect(SocketEvents.TYPING).toBe('typing');
+    expect(SocketEvents.STOP_TYPING).toBe('stop_typing');
+    expect(SocketEvents.USER_TYPING).toBe('user_typing');
   });
 });
