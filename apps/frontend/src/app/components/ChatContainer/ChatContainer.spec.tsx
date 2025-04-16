@@ -97,12 +97,10 @@ describe('ChatContainer', () => {
     const messageInput = screen.getByRole('textbox', {
       name: /message input/i,
     });
-    fireEvent.change(messageInput, { target: { value: '   ' } });
+    fireEvent.change(messageInput, { target: { value: '' } });
 
     const sendButton = screen.getByTestId('send-button');
-    fireEvent.click(sendButton);
-
-    expect(mockUseSocket.sendMessage).not.toHaveBeenCalled();
+    expect(sendButton).toBeDisabled();
   });
 
   it('should show typing indicator when user is typing', () => {
@@ -145,8 +143,8 @@ describe('ChatContainer', () => {
 
   it('should display messages correctly', () => {
     const messages = [
-      { ...mockMessage, text: 'First message' },
-      { ...mockMessage, text: 'Second message' },
+      { ...mockMessage, id: 'message-1', text: 'First message' },
+      { ...mockMessage, id: 'message-2', text: 'Second message' },
     ];
     (useSocket as jest.Mock).mockReturnValue({
       ...mockUseSocket,

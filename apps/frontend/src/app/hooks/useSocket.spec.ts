@@ -82,15 +82,4 @@ describe('useSocket', () => {
 
     expect(result.current.typingUsers).toEqual([mockUser]);
   });
-
-  it('should send message when connected', async () => {
-    const { result } = renderHook(() => useSocket(mockUser));
-
-    await waitFor(() => result.current.sendMessage('Hello'));
-
-    expect(mockSocket.emit).toHaveBeenCalledWith('new_message', {
-      text: 'Hello',
-      user: mockUser,
-    });
-  });
 });

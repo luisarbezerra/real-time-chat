@@ -34,4 +34,12 @@ export default {
       statements: 80,
     },
   },
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.spec.{ts,tsx}',
+    '!src/**/*.test.{ts,tsx}',
+    '!src/**/*.d.ts',
+  ],
+  coverageReporters: ['text', 'text-summary', 'html', 'json'],
+  verbose: true,
 };
