@@ -1,6 +1,7 @@
 # RealTimeChat
 
-✨ [Nx workspace](https://nx.dev) ✨.
+- ✨ [TechArchitecture & Technical Decisions](./doc/doc.md) ✨.
+- ✨ [Scope and planning of the project ✨](./doc/scope.md)
 
 ## Project Overview
 
