@@ -20,7 +20,7 @@ export const ChatContainer = (): React.ReactElement => {
     handleTyping,
     sendMessage,
     isConnected,
-  } = useSocket(user);
+  } = useSocket({ user });
 
   const handleSendMessage = (): void => {
     if (sendMessage(message)) {

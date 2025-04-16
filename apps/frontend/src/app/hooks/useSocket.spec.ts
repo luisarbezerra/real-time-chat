@@ -39,7 +39,7 @@ describe('useSocket', () => {
   });
 
   it('should initialize with default state', () => {
-    const { result } = renderHook(() => useSocket(mockUser));
+    const { result } = renderHook(() => useSocket({ user: mockUser }));
 
     expect(result.current.messages).toEqual([]);
     expect(result.current.isLoading).toBe(true);
