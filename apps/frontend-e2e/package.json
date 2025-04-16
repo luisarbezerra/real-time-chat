@@ -6,5 +6,16 @@
     "implicitDependencies": [
       "frontend"
     ]
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.36.0"
   }
 }
