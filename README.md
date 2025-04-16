@@ -42,6 +42,8 @@ cd real-time-chat
 
 ```bash
 pnpm install
+pnpm nx build shared
+cd libs/shared && pnpm build
 ```
 
 ## Run tasks
