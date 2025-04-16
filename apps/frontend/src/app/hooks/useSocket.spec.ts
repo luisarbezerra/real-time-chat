@@ -48,7 +48,7 @@ describe('useSocket', () => {
   });
 
   it('should handle chat history', async () => {
-    const { result } = renderHook(() => useSocket(mockUser));
+    const { result } = renderHook(() => useSocket({ user: mockUser }));
 
     const chatHistoryCallback = mockSocket.on.mock.calls.find(
       (call: [string, (...args: Message[]) => void]) =>
@@ -61,7 +61,7 @@ describe('useSocket', () => {
   });
 
   it('should handle new message', async () => {
-    const { result } = renderHook(() => useSocket(mockUser));
+    const { result } = renderHook(() => useSocket({ user: mockUser }));
 
     const newMessageCallback = mockSocket.on.mock.calls.find(
       (call: [string, (message: Message) => void]) => call[0] === 'new_message'
@@ -73,7 +73,7 @@ describe('useSocket', () => {
   });
 
   it('should handle typing users', async () => {
-    const { result } = renderHook(() => useSocket(mockUser));
+    const { result } = renderHook(() => useSocket({ user: mockUser }));
 
     // Simulate typing event
     const typingUsersCallback = mockSocket.on.mock.calls.find(
