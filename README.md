@@ -1,6 +1,6 @@
 # RealTimeChat
 
-- ✨ [TechArchitecture & Technical Decisions](./doc/doc.md) ✨.
+- ✨ [TechArchitecture & Technical Decisions](./doc/doc.md) ✨
 - ✨ [Scope and planning of the project ✨](./doc/scope.md)
 
 ## Project Overview
