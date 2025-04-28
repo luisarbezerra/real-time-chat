@@ -17,7 +17,10 @@ export const Message = ({
   const sanitizedUsername = DOMPurify.sanitize(message.user.name);
 
   return (
-    <div className={`message ${isSentByCurrentUser ? 'sent' : 'received'}`}>
+    <div
+      className={`message ${isSentByCurrentUser ? 'sent' : 'received'}`}
+      data-testid={`message-bubble-${message.id}`}
+    >
       <div
         className="message-content"
         dangerouslySetInnerHTML={{ __html: sanitizedText }}

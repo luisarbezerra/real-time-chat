@@ -30,5 +30,13 @@ test.describe('Chat functionality', () => {
     // Check that the send button is enabled after typing
     const sendButton = page.locator('[data-testid="send-button"]');
     await expect(sendButton).toBeEnabled();
+
+    // Send the message
+    await sendButton.click();
+
+    // Check that the message is displayed in the chat
+    const message = page.locator('[data-testid^="message-bubble-"]');
+    await expect(message).toBeVisible();
+    await expect(message).toContainText('Hello, this is a test message!');
   });
 });
