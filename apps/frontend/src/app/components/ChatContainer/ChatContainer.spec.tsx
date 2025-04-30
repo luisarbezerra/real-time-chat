@@ -13,7 +13,7 @@ jest.mock('../../hooks/useSocket');
 
 describe('ChatContainer', () => {
   const mockUseUser = {
-    user: { ...mockUser, name: 'Test User' },
+    user: mockUser,
     updateUsername: jest.fn(),
   };
 
